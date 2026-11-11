@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://riostiktokmio-svg.github.io/ej-reformas-4x4/sitemap.xml
