@@ -6,7 +6,7 @@
 <title>EJ Reformas 4x4 | Reformas y personalización de camionetas Toyota en Bogotá</title>
 <meta name="description" content="Reformas y personalización de camionetas Toyota en Bogotá: interiores, timón GR, radios, farolas, persianas, polarizados, platón y más. Cotiza por WhatsApp 24/7.">
 <meta name="theme-color" content="#0B0B0C">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src https://script.google.com https://script.googleusercontent.com; form-action 'none'; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https://www.facebook.com; media-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://connect.facebook.net; connect-src https://script.google.com https://script.googleusercontent.com https://www.facebook.com https://connect.facebook.net; form-action 'none'; base-uri 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="canonical" href="https://ej-reformas-4x4.onrender.com/">
 <link rel="icon" type="image/png" href="favicon.png">
@@ -133,6 +133,23 @@ h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1;font-weight:800;margin-botto
 @media (max-width:760px){.navlinks,.brandtxt,.wa-label{display:none}.sec{padding-top:72px;padding-bottom:72px}.form{grid-template-columns:1fr;padding:22px}.ba{padding:14px}}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}.wa-orb::before{animation:none}.mcard{animation:none}}
 #cotizar{scroll-margin-top:84px}</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1283230630659801');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1283230630659801&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <header class="nav"><div class="wrap navin">
@@ -312,6 +329,7 @@ h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1;font-weight:800;margin-botto
       .catch(function () {})
       .then(function () {
         clearTimeout(t); enviando = false; btn.disabled = false; btn.textContent = 'Solicitar cotización';
+        try { if (window.fbq) fbq('track', 'Lead', { content_name: d.tipo, content_category: d.camioneta }); } catch (_) {}
         abrirModal(d); form.reset();
       });
   });
@@ -332,7 +350,7 @@ h2{font-size:clamp(30px,3.6vw,46px);line-height:1.1;font-weight:800;margin-botto
   }
   function cerrarModal() { modal.hidden = true; }
   document.getElementById('mClose').addEventListener('click', cerrarModal);
-  document.getElementById('mWa').addEventListener('click', function () { setTimeout(cerrarModal, 300); });
+  document.getElementById('mWa').addEventListener('click', function () { try { if (window.fbq) fbq('track', 'Contact'); } catch (_) {} setTimeout(cerrarModal, 300); });
   modal.addEventListener('click', function (e) { if (e.target === modal) cerrarModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !modal.hidden) cerrarModal(); });
 
