@@ -323,13 +323,17 @@ src="https://www.facebook.com/tr?id=1283230630659801&ev=PageView&noscript=1"
     var cuerpo = new URLSearchParams();
     Object.keys(d).forEach(function (k) { cuerpo.append(k, d[k]); });
     cuerpo.append('autoriza', 'si'); cuerpo.append('origen', 'Landing web');
+    var eventId = 'lead-' + Date.now() + '-' + Math.random().toString(36).slice(2, 10);
+    function galleta(n) { var m = document.cookie.match('(?:^|; )' + n + '=([^;]*)'); return m ? decodeURIComponent(m[1]) : ''; }
+    cuerpo.append('event_id', eventId); cuerpo.append('fbp', galleta('_fbp')); cuerpo.append('fbc', galleta('_fbc'));
+    cuerpo.append('ua', navigator.userAgent.slice(0, 400)); cuerpo.append('url', location.href.split('#')[0].slice(0, 400));
     var ctrl = window.AbortController ? new AbortController() : null;
     var t = setTimeout(function () { if (ctrl) ctrl.abort(); }, 8000);
     fetch(SHEETS, { method: 'POST', mode: 'no-cors', body: cuerpo, signal: ctrl ? ctrl.signal : undefined })
       .catch(function () {})
       .then(function () {
         clearTimeout(t); enviando = false; btn.disabled = false; btn.textContent = 'Solicitar cotización';
-        try { if (window.fbq) fbq('track', 'Lead', { content_name: d.tipo, content_category: d.camioneta }); } catch (_) {}
+        try { if (window.fbq) fbq('track', 'Lead', { content_name: d.tipo, content_category: d.camioneta }, { eventID: eventId }); } catch (_) {}
         abrirModal(d); form.reset();
       });
   });
